@@ -1,17 +1,22 @@
 import copy
 
 def calculateMeleeDMG(w, b):
-    cc = w.cc * (1 + b.br + b.ss + b.gl2)
-    cd = w.cd * (1 + b.os + b.gl1)
-    atkspd = w.speed * (1 + b.pf + b.bf)
-    rng = w.range + b.pr + b.slb
+    riven = copy.deepcopy(b.riven)
+    for key, val in riven.items():
+        riven[key] = round(val * w.dispo,3)
+
+    cc = w.cc * (1 + b.br + b.ss + b.gm2 + riven['cc'])
+    cd = w.cd * (1 + b.os + b.gm1 + riven['cd'])
+    atkspd = w.speed * (1 + b.pf + b.bf + riven['as'])
+    rng = w.range + b.pr + b.slb + riven['rng']
     sc = w.sc * (1 + b.ww + b.vs + b.vf + b.cm2)
-    bane = b.b # Include roar 
+    bane = b.b + riven['bane'] # Include roar 
 
     dmg = copy.deepcopy(w.dmg)
 
     for type, val in dmg.items():
-        dmg[type] = val * (1 + b.co + b.ppp) * (1 + bane)
+        dmg[type] = val * (1 + b.co + b.ppp + riven['dmg']) * (1 + bane)
+
 
     # do this before adding damage type mods (ie carnis mandible)
     modded_base_dmg = dmg['Total'] 
@@ -33,5 +38,10 @@ def calculateMeleeDMG(w, b):
 
     #tdmgtbl = [sum(dmgtble[0:i]) for i in range(6)]
     #print(tdmgtbl)
+
+    #if w.name == 'Gram Prime':
+        #print(cc)
+        #print(cd)
+        #print(crit_multiplier)
 
     return w.name, round(sp_dps,2)
