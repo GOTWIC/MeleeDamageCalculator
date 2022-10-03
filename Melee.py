@@ -33,8 +33,8 @@ class MeleeBuild:
         self.pr = mods['Primed Reach'] * 3
         self.slb = mods['Spring-Loaded Blade'] * 2
         self.ww = mods['Weeping Wounds'] * 4.4
-        self.vs = mods['Virulent Scourge'] * 0.6 - otherSettings['Unranked Viral' * 0.45] # Both tox and sc
-        self.vf = mods['Vicious Frost'] * 0.6 - otherSettings['Unranked Viral' * 0.45] # Both cold and sc
+        self.vs = mods['Virulent Scourge'] * 0.6# - otherSettings['Unranked Viral' * 0.45] # Both tox and sc
+        self.vf = mods['Vicious Frost'] * 0.6# - otherSettings['Unranked Viral' * 0.45] # Both cold and sc
         self.cm1 = mods['Carnis Mandible'] * 0.9 # slash
         self.cm2 = mods['Carnis Mandible'] * 0.6  # sc
         self.b = mods['Bane'] * 0.55
