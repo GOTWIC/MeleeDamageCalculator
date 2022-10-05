@@ -16,9 +16,11 @@ data = []
 for wep in meleeWeapons:
     data.append(Calculator.calculateMeleeDMG(wep, build))
 
-df = pd.DataFrame(data, columns=['Name', 'Slash DPS'])
+df = pd.DataFrame(data, columns=['Name', 'Slash DPS - No Stance', 'Best Neutral Stance', 'Slash DPS - Neutral', 'Best Forward Stance', 'Slash DPS - Forward'])
 
-df.sort_values(by=['Slash DPS'], ascending=False, inplace=True, ignore_index=True)
+df.sort_values(by=['Slash DPS - No Stance'], ascending=False, inplace=True, ignore_index=True)
 
 
 print(df.head(20))
+
+df.to_csv('results.csv')
