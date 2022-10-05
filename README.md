@@ -5,6 +5,6 @@ This is a melee weapon damage calculator for Warframe. Not even WWDC calculates 
 TODO:
  - ~~Riven Mods~~ (COMPLETED)
  - Negative impact/puncture,physical damage mods
- - Stance: Neutral
- - Stance: Forward
+ - Stance: Neutral (IN PROGRESS)
+ - Stance: Forward (IN PROGRESS)
  - Stance: Heavy (Tentative)
