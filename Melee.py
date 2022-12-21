@@ -53,7 +53,7 @@ class MeleeBuild:
             'dmg': mods['Riven'] * rivenSettings['+Melee Damage'] * 1.359,
             '-h': mods['Riven'] * rivenSettings['-Harmless'] * -1,
             '-p': mods['Riven'] * rivenSettings['-Puncture'] * -0.988,
-            '-i': mods['Riven'] * rivenSettings['-Puncture'] * -0.988,
+            '-i': mods['Riven'] * rivenSettings['-Impact'] * -0.988,
         }
 
         if mods['Riven'] == 1:

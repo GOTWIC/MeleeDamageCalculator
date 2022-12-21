@@ -25,17 +25,25 @@ def calculateMeleeDMG(w, b):
         dmg[type] = val * (1 + b.co + b.ppp + riven['dmg']) * (1 + bane)
 
 
-    # To calculate slash weight
+    # To calculate slash weight (MUST BE BEFORE ANY IPS MODIFICATIONS)
     modded_base_dmg = dmg['Total'] 
 
-    # calculate damage type specific mods here
-    # ... NOT IMPLEMENTED
+    # calculate damage type specific mods here (IPS, elemental, etc.)
+    # ... IN PROGRESS
+
+    if riven['-i'] != 0:
+        dmg['Impact'] *= max(1+riven['-i'],0)
+    if riven['-p'] != 0:
+        dmg['Puncture'] *= max(1+riven['-p'],0)
+
+    dmg = recalculateTotalDmg(dmg)
 
 
     # Bleed damage and chance to proc per hit
     sp_dmg_tick = 0.35 * modded_base_dmg * (1 + bane) * crit_multiplier
     sp_weight = dmg['Slash'] / dmg['Total']
     sp_per_hit = sc * sp_weight
+
 
 
     # Stanceless
@@ -60,6 +68,7 @@ def calculateMeleeDMG(w, b):
 
             weapon_sp_per_sec = sp_per_hit * hits_per_sec
             total_sp_per_sec = weapon_sp_per_sec + added_sp_per_sec
+
             stance_sp_dps = total_sp_per_sec * sp_dmg_tick * modded_avgMulti
 
             stance_neutral_dmgvals.append((stance, round(stance_sp_dps,0)))
@@ -96,3 +105,12 @@ def calculateMeleeDMG(w, b):
     
 
     return w.name, round(stanceless_sp_dps,2), stance_neutral_dmgvals[0][0], stance_neutral_dmgvals[0][1], stance_forward_dmgvals[0][0], stance_forward_dmgvals[0][1]
+
+
+def recalculateTotalDmg(dmg_dict):
+    total = 0
+    for key, val in dmg_dict.items():
+        if key != 'Total':
+            total += val
+    dmg_dict['Total'] = total
+    return dmg_dict

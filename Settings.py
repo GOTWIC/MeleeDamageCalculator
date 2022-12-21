@@ -20,12 +20,12 @@ mods = {
 rivenSettings = {
     '+Critical Chance': 0,
     '+Critical Damage': 1,
-    '+Attack Speed': 0,
-    '+Range': 0,
-    '+Bane': 1,
+    '+Attack Speed': 1,
+    '+Range': 1,
+    '+Bane': 0,
     '+Melee Damage': 0,
-    '-Harmless': 1,
-    '-Puncture': 0,
+    '-Harmless': 0,
+    '-Puncture': 1,
     '-Impact': 0,
 }
 
